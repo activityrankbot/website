@@ -1,0 +1,28 @@
+name: Build release
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        uses: ./.github/actions/setup
+
+      - name: Build dist
+        run: yarn build
+      
+      - name: Save artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{github.ref_name}}
+          path: build

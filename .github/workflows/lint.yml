@@ -1,0 +1,21 @@
+name: Linting
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        uses: ./.github/actions/setup
+
+      - name: ESLint
+        run: yarn lint --max-warnings 0
+
+      - name: Typecheck
+        run: yarn typecheck

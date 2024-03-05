@@ -1,15 +1,19 @@
 {
-  "name": "activityrankwebremix",
+  "name": "@activityrank/web",
   "private": true,
   "sideEffects": false,
-  "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "yarn@4.1.0",
   "scripts": {
     "dev": "DATABASE_URL=.dev.db remix vite:dev",
     "build": "remix vite:build",
     "start": "remix-serve ./build/server/index.js",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "format": "prettier -w --ignore-path .gitignore --ignore-path .prettierignore .",
+    "format": "prettier --write --log-level warn .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc",
     "db:rebuild": "[ ! -e .dev.db ] || rm .dev.db && cat schema.sql | sqlite3 .dev.db",
     "db:codegen": "kysely-codegen --url .dev.db --dialect sqlite",
@@ -61,9 +65,5 @@
     "vite": "^5.1.4",
     "vite-imagetools": "^6.2.9",
     "vite-tsconfig-paths": "^4.3.1"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "packageManager": "yarn@4.1.0"
+  }
 }

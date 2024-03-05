@@ -1,15 +1,15 @@
-import { useState, Fragment, type PropsWithChildren } from "react";
-import cx from "clsx";
-import { Link, useLocation } from "@remix-run/react";
-import { Dialog, Transition } from "@headlessui/react";
+import { useState, Fragment, type PropsWithChildren } from 'react';
+import cx from 'clsx';
+import { Link, useLocation } from '@remix-run/react';
+import { Dialog, Transition } from '@headlessui/react';
 import {
   ArrowRightIcon,
   Bars3Icon,
   XMarkIcon,
-} from "@heroicons/react/24/outline";
-import logoSrc from "~/assets/img/icon.png?w=60&format=webp";
-import { GithubIcon } from "./icons/GitHub";
-import type { SerializedPotentialUser } from "~/lib/auth.server";
+} from '@heroicons/react/24/outline';
+import logoSrc from '~/assets/img/icon.png?w=60&format=webp';
+import { GithubIcon } from './icons/GitHub';
+import type { SerializedPotentialUser } from '~/lib/auth.server';
 
 function MobileDialogWrapper(
   props: PropsWithChildren<{
@@ -64,7 +64,7 @@ function MobileDialog(props: {
   ) => (
     <Link
       to={props.to}
-      className={cx("px-4 py-2", props.active && "text-ar-med")}
+      className={cx('px-4 py-2', props.active && 'text-ar-med')}
     >
       {props.children}
     </Link>
@@ -103,7 +103,7 @@ function MobileDialog(props: {
               to="/login"
               className="flex w-full items-center justify-center gap-1 rounded-xl bg-gradient-to-r from-ar-light to-ar-med py-2 text-slate-900"
             >
-              <span>{props.user ? "Dashboard" : "Log In"}</span>
+              <span>{props.user ? 'Dashboard' : 'Log In'}</span>
               <ArrowRightIcon className="size-4 stroke-2" />
             </Link>
           </div>
@@ -126,14 +126,14 @@ function useNavigation() {
     name,
     to,
     // remove trailing slashes
-    active: location.pathname.replace(/\/+$/, "") === to,
+    active: location.pathname.replace(/\/+$/, '') === to,
   });
 
   const navigation: NavigationEntry[] = [
-    nav("FAQ", "/faq"),
-    nav("Support", "/support"),
-    nav("Premium", "/premium"),
-    nav("Patchnotes", "/patchnotes"),
+    nav('FAQ', '/faq'),
+    nav('Support', '/support'),
+    nav('Premium', '/premium'),
+    nav('Patchnotes', '/patchnotes'),
   ];
 
   return navigation;
@@ -150,8 +150,8 @@ export function Header(props: { user: SerializedPotentialUser }) {
     <Link
       to={props.to}
       className={cx(
-        "rounded px-4 py-2 transition-colors hover:bg-slate-700",
-        props.active && "bg-slate-950 text-ar-med hover:bg-slate-950",
+        'rounded px-4 py-2 transition-colors hover:bg-slate-700',
+        props.active && 'bg-slate-950 text-ar-med hover:bg-slate-950',
       )}
     >
       {props.children}
