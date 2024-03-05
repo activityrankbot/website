@@ -2,7 +2,7 @@ import { Lucia, type User } from 'lucia';
 import { adapter } from './db';
 import { parseCookies } from 'oslo/cookie';
 import { json, redirect } from '@remix-run/node';
-import type { DB } from 'kysely-codegen';
+import type { DB } from '~/../db/database';
 
 import { webcrypto } from 'crypto';
 globalThis.crypto = webcrypto as Crypto;
