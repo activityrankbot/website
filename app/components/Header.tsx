@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 import logoSrc from '~/assets/img/icon.png?w=60&format=webp';
 import { GithubIcon } from './icons/GitHub';
-import type { SerializedPotentialUser } from '~/lib/auth.server';
+import type { PotentialUser } from '~/lib/auth.server';
 
 function MobileDialogWrapper(
   props: PropsWithChildren<{
@@ -53,10 +53,7 @@ function MobileDialogWrapper(
   );
 }
 
-function MobileDialog(props: {
-  close: () => void;
-  user: SerializedPotentialUser;
-}) {
+function MobileDialog(props: { close: () => void; user: PotentialUser }) {
   const navigation = useNavigation();
 
   const HeaderLink = (
@@ -139,7 +136,7 @@ function useNavigation() {
   return navigation;
 }
 
-export function Header(props: { user: SerializedPotentialUser }) {
+export function Header(props: { user: PotentialUser }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigation = useNavigation();

@@ -24,5 +24,5 @@ This repository hosts the website for ActivityRank, hosting FAQs and policies.
 Thank you for deciding to contribute! Pull requests are welcome.
 For major changes, please open an issue first to discuss what you would like to change.
 
-Please remember to run the `yarn db` script to initialize the database,
+Please remember to run the `yarn db:rebuild` script to initialize the database,
 before running the app with `yarn dev`.

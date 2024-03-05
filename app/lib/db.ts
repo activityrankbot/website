@@ -1,7 +1,7 @@
 import { BetterSqlite3Adapter } from '@lucia-auth/adapter-sqlite';
 import sqlite from 'better-sqlite3';
 import { Kysely, SqliteDialect } from 'kysely';
-import type { DB } from 'kysely-codegen';
+import type { DB } from '~/../db/database';
 
 const database = sqlite('main.db');
 

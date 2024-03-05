@@ -16,8 +16,9 @@
     "format": "prettier --write --log-level warn .",
     "format:check": "prettier --check .",
     "typecheck": "tsc",
-    "db:rebuild": "[ ! -e .dev.db ] || rm .dev.db && cat schema.sql | sqlite3 .dev.db",
-    "db:codegen": "kysely-codegen --url .dev.db --dialect sqlite",
+    "check": "yarn lint && yarn typecheck && yarn format:check",
+    "db:rebuild": "[ ! -e ./db/.dev.db ] || rm ./db/.dev.db && cat schema.sql | sqlite3 ./db/.dev.db",
+    "db:codegen": "kysely-codegen --url ./db/.dev.db --dialect sqlite --out-file ./db/database.d.ts",
     "db": "yarn db:rebuild && yarn db:codegen"
   },
   "dependencies": {

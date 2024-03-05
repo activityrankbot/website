@@ -3,7 +3,6 @@ import { adapter } from './db';
 import { parseCookies } from 'oslo/cookie';
 import { json, redirect } from '@remix-run/node';
 import type { DB } from 'kysely-codegen';
-import type { JsonifyObject } from '@remix-run/server-runtime';
 
 import { webcrypto } from 'crypto';
 globalThis.crypto = webcrypto as Crypto;
@@ -80,7 +79,7 @@ export async function requireGuest(request: Request) {
   }
 }
 
-export type SerializedPotentialUser = JsonifyObject<User> | null;
+export type PotentialUser = User | null;
 
 export async function getPotentialUser(request: Request) {
   const sessionId = getSessionId(request);
