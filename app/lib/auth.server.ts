@@ -9,9 +9,7 @@ globalThis.crypto = webcrypto as Crypto;
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
-    attributes: {
-      secure: process.env.NODE_ENV !== 'development',
-    },
+    attributes: { secure: import.meta.env.PROD },
   },
   getUserAttributes: (attributes) => {
     return {
@@ -33,9 +31,7 @@ export function destroySession() {
   const sessionCookie = lucia.createBlankSessionCookie();
 
   return redirect('/', {
-    headers: {
-      'Set-Cookie': sessionCookie.serialize(),
-    },
+    headers: { 'Set-Cookie': sessionCookie.serialize() },
   });
 }
 
@@ -52,9 +48,7 @@ export async function requireUser(request: Request) {
     const sessionCookie = lucia.createSessionCookie(result.session.id);
 
     throw redirect(request.url, {
-      headers: {
-        'Set-Cookie': sessionCookie.serialize(),
-      },
+      headers: { 'Set-Cookie': sessionCookie.serialize() },
     });
   }
 
@@ -94,9 +88,7 @@ export async function getPotentialUser(request: Request) {
     const sessionCookie = lucia.createSessionCookie(result.session.id);
 
     throw redirect(request.url, {
-      headers: {
-        'Set-Cookie': sessionCookie.serialize(),
-      },
+      headers: { 'Set-Cookie': sessionCookie.serialize() },
     });
   }
 
