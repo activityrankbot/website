@@ -7,6 +7,7 @@
     "node": ">=18.0.0"
   },
   "packageManager": "yarn@4.1.0",
+  "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "DATABASE_URL=.dev.db remix vite:dev",
     "build": "remix vite:build",

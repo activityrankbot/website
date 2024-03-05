@@ -7,7 +7,7 @@
 **The website providing documentation to the ActivityRank Bot**
 
 [![Latest Release](https://img.shields.io/github/v/release/activityrankbot/website?style=for-the-badge)](https://github.com/activityrankbot/website/releases)
-[![License](https://img.shields.io/github/license/activityrankbot/website?style=for-the-badge)](https://github.com/activityrankbot/website/blob/main/LICENSE.md)
+[![License](https://img.shields.io/github/license/activityrankbot/website?style=for-the-badge)](https://github.com/activityrankbot/website/blob/main/LICENSE.txt)
 [![Support Server](https://img.shields.io/discord/534598374985302027?style=for-the-badge&logo=discord&label=support%20server&link=https%3A%2F%2Factivityrank.me/support)](https://activityrank.me/support)
 
 </div>
