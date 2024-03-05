@@ -20,7 +20,7 @@ jobs:
 
       - name: Build dist
         run: yarn build
-      
+
       - name: Save artifact
         uses: actions/upload-artifact@v4
         with:
