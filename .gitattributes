@@ -1,0 +1,5 @@
+/.yarn/releases/** binary
+/.yarn/plugins/** binary
+
+# allow JSON comments in VSCode files
+.vscode/*.json linguist-language=JSON-with-Comments

@@ -1,0 +1,248 @@
+# `content` fields are written in Markdown. 
+# Note that in Markdown, a blank line between lines is required
+# to signify a line break. Alternatively, `<br />` may be used.
+
+[[faq]]
+title = "What is my bot's prefix?"
+content = """
+You don't need any prefix since we now use slash commands.
+
+Type `/` - if you don't see any commands listed,
+reinvite the bot [here](https://discord.com/api/oauth2/authorize?client_id=534589798267224065&permissions=294172224721&scope=bot%20applications.commands).
+"""
+
+[[faq]]
+title = "How do I get a role, channel or user ID?"
+content = """
+1. Go to your Discord user settings and then Advanced
+2. Enable Developer Mode
+3. Go to the role, channel or user you wish to find the ID of
+4. Right click on it and copy ID
+"""
+
+[[faq]]
+title = "Why is the bot offline?"
+content = """
+* Check the right side of discord to see if the bot is online (if not it may be a restart).
+* Try the command `/ping`.
+* Make sure the bot has got all needed role permissions on the server.
+* Make sure the bot has got all needed Role permissions within the channel settings.
+* Check if you have disabled slash commands in certain channels, 
+via `Server Settings -> Integrations -> ActivityRank`.
+
+Also check commandOnly and noCommand channels, but it is advised to use the Integrations menu instead. 
+"""
+
+[[faq]]
+title = "How do I change the xp settings?"
+content = """
+`/config-xp xp-per`
+
+`/config-xp bonus-xp-per`
+
+`/config-server cooldown`
+
+
+**Note** that this will recalculate everything
+"""
+
+[[faq]]
+title = "What is the level factor?"
+content = """
+The level factor says how many XP more per level you need. 
+See below the definition of each number as well as how it is calculated.
+
+Run `/serverinfo type:levels`.
+
+The 1st number is the amount of XP needed to gain 
+the next level (the bracketed number is the total XP needed).
+
+## Previous Level
+`((((level + 1) * level) / 2) - 1) * LF - 100`
+
+## Next Level
+`((((level + 1) * level) / 2) * LF) + (level * 100)`
+
+## Current level
+`(((((level + 1) * level) / 2) * LF) + 
+(level * 100)) - ((level * LF) + 100)`
+
+*(Previous level is previous to your current level eg. you are level 5, use level 4)*
+"""
+
+[[faq]]
+title = "All about level roles"
+content = """
+* To add a role use `/config-role levels` and fill out the required fields.
+* To change the level use the command for assigning/deassigning levels again but use the level you wish.
+* To remove, set the level to 0.
+
+If roles don't get assigned upon levelup:
+* Make sure the ActivityRank role is above all levelroles on the role ladder/hirachy. ![An example hierarchy of roles](https://cdn.discordapp.com/attachments/940677091446386739/1005850212872507443/unknown.png?size=4096)
+* Make sure the Bot has all needed permissions (Check via `/serverinfo`, subcategory Permissions)
+* Make sure the assignlevel is lower than the deassignlevel.
+
+When do people get the roles assigned?
+> They need to level up again. This can happen by receiving enough XP as they continue to gain it or by an admin giving bonus XP.
+"""
+
+[[faq]]
+title = "Is it possible to use Admin commands without Admin permissions?"
+content = """
+Yes. By default, all admin commands can be used with **MANAGE SERVER** permissions.
+"""
+
+[[faq]]
+title = "Are there only 13 levels and top 12 users?"
+content = """
+There are unlimited levels! Just use the arrow buttons at the bottom of embeds.
+"""
+
+[[faq]]
+title = "Is there a rank card?"
+content = """
+A rank card is planned as a future feature.
+"""
+
+[[faq]]
+title = "The bot doesn't give XP"
+content = """
+* Make sure the bot has the permissions to read in the channels.
+* Check if you have a noxp role: `/serverinfo type:NO XP roles`
+* Check if the channel is a noxp channel: `/serverinfo type:NP XP channels`
+* If it's a voice channel: the Bot updates voicetime every 0.1 hours (6 min) or 0.2 hours (12 min)
+* Make sure you didn't deactivate the specific XP type
+"""
+
+[[faq]]
+title = "All about 🏆 bonus XP"
+content = """
+To give bonus XP:
+`/bonus role role: give: take:`
+`/bonus member member: give: take:`
+
+You can't give levels, only XP. Maximum of 1.000.000 XP per command run.
+
+Bonustime:
+Configure your XP per values (they get added upon the default XP per settings, NOT multiplied!): `/config-bonus xp-per`
+Start your bonustime with: `/config-xp bonustime`
+"""
+
+[[faq]]
+title = "How do I set up levels for voice/text/invites/likes only?"
+content = """
+You can deactivate textmessage XP, voice XP, invite XP or like/vote XP via `/config-server set`.
+
+These are toggles, meaning they are either activated or deactivated.
+
+----
+
+More details for Voice Leveling only:
+
+1. disable all other modules:
+`/config-server set`
+
+2. If you need specific voicetimes check our calculator (not completely finished yet).
+Maybe you need to change your levelfactor or xp per voiceminute!!
+`/config-xp levelfactor`
+`/config-xp xp-per`
+
+3. Do the levelroles:
+`/config-role levels role: assignlevel: deassignlevel:`
+"""
+
+[[faq]]
+title = "I'm not getting any level up messages?"
+content = """
+1. Either use `/config-server set` and choose between "Notify via DM" or "Notify Last Active Channel"
+or use `/config-channel channel:` and choose Levelup Channel
+
+2. Set the level up message, use the variables `<mention>`, `<name>`, `<level>`, `<servername>` and `<rolemention>`.
+Type `/config-messages`, choose "Levelup Message" and then enter your message.
+Make sure the bot has the permissions to send embeds and messages as well as attach files in your chosen channel
+"""
+
+[[faq]]
+title = "What are votes?"
+content = """
+Votes (or Likes) are a way for users to give someone XP. You can use the command `/member upvote` or you can activate reaction voting on your server with `/config-server set` and choose "reaction vote",
+
+You can change the votecooldown with `/config-server cooldown`
+
+You can change your vote-emote and name with `/config-server vote` then when a user reacts on a message, it gives the message sender one Like (or two if you got 2x power), and they gain a set amount of XP.
+You can get 2x power for 3 days by upvoting the bot on top.gg `/token redeem votepower`
+"""
+
+[[faq]]
+title = "Can I stop muted/deafened/solo users from gaining XP in voice channels?"
+content = """
+Run `/config-server set` and click on "Allow Muted XP", "Allow Deafened XP" or "Allow Solo XP" to either allow or disallow.
+
+**Bots don't count as users!**
+"""
+
+[[faq]]
+title = "When do the monthly, weekly and daily stats reset?"
+content = """
+The monthly stats reset every 2nd day of the month.
+"""
+
+[[faq]]
+title = "An error occured or no Commands get listed. What should I do?"
+content = """
+If there are no commands listed if you type `/`, reinvite the bot and wait 5 minutes.
+
+If the bot says an error occured or the application timed out, please try again later. It might be a shard down or a restart. If it still doesn't work contact the Help Staff.
+"""
+
+[[faq]]
+title = "Why doesn't my voicetime get updated anymore?"
+content = """
+Most likely you just need to disconnect and connect back to any voice channel, wait a few minutes and then check your stats again.
+
+Otherwise you're using a Bot that creates temporary voice channels. At a certain point this breaks your voice tracking (and XP). 
+
+Either remove the voice channel bot, stop using the voice activity XP (in future you will be able to turn this off) or live with it. 
+
+After a restart of the bot it fixes itself, BUT only for a certain amount of time!
+
+If it's not a Bot, then the first update happens after 12 minutes (0.2) and then every 6 minutes (0.1)
+
+0.1 = 6 min
+
+0.5 = 30 min
+
+1.0 = 60 min
+"""
+
+[[faq]]
+title = "How does invite XP work?"
+content = """
+You can set one person as your inviter -> The person who invited you. `/inviter member:`
+
+Both of you get 1 Invite (✉️) onto your Stats and a set amount of XP.
+
+To check who you set as your inviter, simply run `/memberinfo`
+
+**This is a one-time decision.** Once this is set, only a reset of the whole server's Inviters can undo it!
+"""
+
+[[faq]]
+title = "What are the different Stats/Emojis?"
+content = """
+✍️ = Textmessages
+
+🎙️ = Voicetime (shown in hours)
+
+✉️ = Invites (see FAQ nr. 22)
+
+❤️ = likes (see FAQ nr. 17)
+
+🏆 = Bonus (give/take or Bonustime)
+"""
+
+[[faq]]
+title = "Will there be a dashboard?"
+content = """
+No ETA yet, but coming soon!
+"""

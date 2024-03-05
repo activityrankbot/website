@@ -1,0 +1,30 @@
+/* reenable Tailwind's removal of list styles */
+.content ul {
+  list-style: inside disc;
+}
+.content ol {
+  list-style: inside decimal;
+}
+
+.content code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: theme('colors.ar.light');
+  background-color: theme('colors.slate.700');
+  border-radius: 4px;
+}
+
+.content a {
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(
+    to bottom right,
+    theme('colors.ar.light') 0%,
+    theme('colors.ar.dark') 100%
+  );
+}
+
+.content * {
+  /* disable ligatures (like (c) becoming ©️) */
+  font-variant-ligatures: none;
+}

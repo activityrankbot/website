@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* dvh is used to avoid overflow on mobile devices with a notch */
+  .min-h-screen {
+    min-height: 100vh; /* Fallback */
+    min-height: 100dvh;
+  }
+  .h-screen {
+    height: 100vh; /* Fallback */
+    height: 100dvh;
+  }
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  src: url(./assets/fonts/manrope.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./assets/fonts/space-mono.woff2) format('woff2');
+}
