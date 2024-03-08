@@ -45,5 +45,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GIT_COMMIT=${{ github.SHORT_SHA }}
+            GIT_COMMIT=$SHORT_SHA
             APP_VERSION=${{ github.ref_name }}
