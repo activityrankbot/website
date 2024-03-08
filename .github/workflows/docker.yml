@@ -47,4 +47,3 @@ jobs:
           build-args: |
             GIT_COMMIT=${{ github.SHORT_SHA }}
             APP_VERSION=${{ github.ref_name }}
-            
