@@ -26,3 +26,16 @@ For major changes, please open an issue first to discuss what you would like to 
 
 Please remember to run the `yarn db:rebuild` script to initialize the database,
 before running the app with `yarn dev`.
+
+### Running with Docker
+
+We use Docker to run the website in production.
+To build an image locally, remember to include build-args:
+
+```sh
+$ docker build \
+  --build-arg GIT_COMMIT=$(git log --format=%h -n1) \
+  --build-arg APP_VERSION=$(git describe --tags --abbrev=0) \
+  -t activityrank/web:dev .
+$ docker run --env-file .env -p3000:3000 --init activityrank/web:dev
+```
