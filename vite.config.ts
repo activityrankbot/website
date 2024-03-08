@@ -9,6 +9,12 @@ import child_process from 'node:child_process';
 
 installGlobals();
 
+console.log(
+  'loading build env',
+  process.env.GIT_COMMIT,
+  process.env.APP_VERSION,
+);
+
 // run a CLI process to get the latest git hash
 const __COMMIT_HASH__ =
   process.env.GIT_COMMIT && process.env.GIT_COMMIT !== 'unspecified'
