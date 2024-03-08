@@ -11,14 +11,18 @@ installGlobals();
 
 // run a CLI process to get the latest git hash
 const __COMMIT_HASH__ =
-  child_process
-    .execSync('git log --pretty=format:"%h" -n1')
-    .toString()
-    .trim() ?? 'xxxxxxx';
+  process.env.GIT_COMMIT && process.env.GIT_COMMIT !== 'unspecified'
+    ? process.env.GIT_COMMIT
+    : child_process.execSync('git log --format=%h -n1').toString().trim() ??
+      'xxxxxxx';
 
 // get latest git tag
-const __APP_VERSION__ =
-  child_process.execSync('git describe --tags').toString().trim() ?? 'v0.0.0';
+const __APP_VERSION__ = process.env.APP_VERSION
+  ? process.env.APP_VERSION
+  : child_process
+      .execSync('git describe --tags --abbrev=0')
+      .toString()
+      .trim() ?? 'v0.0.0';
 
 export default defineConfig({
   plugins: [
