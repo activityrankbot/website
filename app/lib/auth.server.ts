@@ -4,9 +4,6 @@ import { parseCookies } from 'oslo/cookie';
 import { json, redirect } from '@remix-run/node';
 import type { DB } from '~/../db/database';
 
-import { webcrypto } from 'crypto';
-globalThis.crypto = webcrypto as Crypto;
-
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
     attributes: { secure: import.meta.env.PROD },
