@@ -37,5 +37,5 @@ $ docker build \
   --build-arg GIT_COMMIT=$(git log --format=%h -n1) \
   --build-arg APP_VERSION=$(git describe --tags --abbrev=0) \
   -t activityrank/web:dev .
-$ docker run --env-file .env -p3000:3000 --init activityrank/web:dev
+$ docker run --env-file .env -p3000:3000 --init --name activityrank/web activityrank/web:dev
 ```
