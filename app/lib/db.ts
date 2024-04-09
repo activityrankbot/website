@@ -1,15 +1,19 @@
-import { BetterSqlite3Adapter } from '@lucia-auth/adapter-sqlite';
-import sqlite from 'better-sqlite3';
-import { Kysely, SqliteDialect } from 'kysely';
+import { Mysql2Adapter } from '@lucia-auth/adapter-mysql';
+import { createPool } from 'mysql2/promise';
+import { Kysely, MysqlDialect } from 'kysely';
 import type { DB } from '~/../db/database';
 
-const database = sqlite('main.db');
+const pool = createPool(ENV.DATABASE_URL);
 
 export const db = new Kysely<DB>({
-  dialect: new SqliteDialect({ database }),
+  dialect: new MysqlDialect({
+    // `pool.pool` is required to convert the promise-based pool to the
+    // callback format that Kysely requires.
+    // Note that BOTH methods will work with TypeScript; forgetting
+    // this step will raise runtime errors.
+    pool: pool.pool,
+  }),
 });
 
-export const adapter = new BetterSqlite3Adapter(database, {
-  user: 'user',
-  session: 'session',
-});
+const tableNames = { user: 'user', session: 'session' };
+export const adapter = new Mysql2Adapter(pool, tableNames);
