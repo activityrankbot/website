@@ -24,10 +24,10 @@ export function getSessionId(request: Request) {
   return parseCookies(cookies ?? '').get(lucia.sessionCookieName);
 }
 
-export function destroySession() {
+export function destroySession(url: string = '/login') {
   const sessionCookie = lucia.createBlankSessionCookie();
 
-  return redirect('/', {
+  return redirect(url, {
     headers: { 'Set-Cookie': sessionCookie.serialize() },
   });
 }
@@ -101,7 +101,7 @@ export async function logout(request: Request) {
 
   await lucia.invalidateSession(sessionId);
 
-  return destroySession();
+  return destroySession('/');
 }
 
 declare module 'lucia' {
