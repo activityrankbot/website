@@ -1,4 +1,5 @@
 import type { APIUser } from 'discord-api-types/v10';
+import { TimeSpan } from 'oslo';
 
 export interface User {
   displayName: string;
@@ -15,9 +16,14 @@ const STAFF = [
 type StaffKey = (typeof STAFF)[number]['key'];
 
 let users: null | Record<StaffKey, User> = null;
+const lastUpdate: Date = new Date();
 
 export async function fetchStaffUsers() {
-  if (users) return users;
+  const timeDifference = new Date().getTime() - lastUpdate.getTime();
+  if (users && timeDifference < new TimeSpan(1, 'h').milliseconds())
+    return users;
+
+  console.log('Updating staff index');
 
   const headers = new Headers();
   headers.set('Authorization', `Bot ${ENV.DISCORD_TOKEN}`);
