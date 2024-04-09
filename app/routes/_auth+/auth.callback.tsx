@@ -5,7 +5,6 @@ import { discord } from '~/lib/discord';
 import { parseCookies } from 'oslo/cookie';
 import { db } from '~/lib/db';
 import { lucia } from '~/lib/auth.server';
-import { generateId } from 'lucia';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const params = new URL(request.url).searchParams;
@@ -35,16 +34,16 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const discordUser: APIUser = await discordUserResponse.json();
 
     const existingUser = await db
-      .selectFrom('user')
+      .selectFrom('web_user')
       .select('id')
-      .where('discord_id', '=', discordUser.id)
+      .where('id', '=', discordUser.id)
       .executeTakeFirst();
 
     if (existingUser) {
       // update icon URL
       await db
-        .updateTable('user')
-        .set({ icon_hash: discordUser.avatar })
+        .updateTable('web_user')
+        .set({ avatar_hash: discordUser.avatar })
         .where('id', '=', existingUser.id)
         .executeTakeFirst();
 
@@ -56,18 +55,16 @@ export async function loader({ request }: LoaderFunctionArgs) {
       });
     }
 
-    const userId = generateId(15);
     await db
-      .insertInto('user')
+      .insertInto('web_user')
       .values({
-        id: userId,
-        discord_id: discordUser.id,
-        discord_username: discordUser.username,
-        icon_hash: discordUser.avatar,
+        id: discordUser.id,
+        username: discordUser.username,
+        avatar_hash: discordUser.avatar,
       })
       .executeTakeFirst();
 
-    const session = await lucia.createSession(userId, {});
+    const session = await lucia.createSession(discordUser.id, {});
     return redirect('/', {
       headers: {
         'Set-Cookie': lucia.createSessionCookie(session.id).serialize(),

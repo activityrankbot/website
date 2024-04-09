@@ -5,13 +5,12 @@ export interface Session {
 }
 
 export interface User {
-  discord_id: string;
-  discord_username: string;
-  icon_hash: string | null;
   id: string;
+  username: string;
+  avatar_hash: string | null;
 }
 
 export interface DB {
   session: Session;
-  user: User;
+  web_user: User;
 }

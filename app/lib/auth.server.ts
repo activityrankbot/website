@@ -10,10 +10,10 @@ export const lucia = new Lucia(adapter, {
   },
   getUserAttributes: (attributes) => {
     return {
-      discordId: attributes.discord_id,
-      username: attributes.discord_username,
-      iconURL: attributes.icon_hash
-        ? `https://cdn.discordapp.com/avatars/${attributes.discord_id}/${attributes.icon_hash}.png`
+      id: attributes.id,
+      username: attributes.username,
+      iconURL: attributes.avatar_hash
+        ? `https://cdn.discordapp.com/avatars/${attributes.id}/${attributes.avatar_hash}.png`
         : '/img/default-user-icon.png',
     };
   },
@@ -107,6 +107,6 @@ export async function logout(request: Request) {
 declare module 'lucia' {
   interface Register {
     Lucia: typeof lucia;
-    DatabaseUserAttributes: Omit<DB['user'], 'id'>;
+    DatabaseUserAttributes: DB['web_user'];
   }
 }

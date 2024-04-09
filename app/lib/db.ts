@@ -3,7 +3,11 @@ import { createPool } from 'mysql2/promise';
 import { Kysely, MysqlDialect } from 'kysely';
 import type { DB } from '~/../db/database';
 
-const pool = createPool(ENV.DATABASE_URL);
+const pool = createPool({
+  uri: ENV.DATABASE_URL,
+  supportBigNumbers: true,
+  bigNumberStrings: true,
+});
 
 export const db = new Kysely<DB>({
   dialect: new MysqlDialect({
@@ -15,5 +19,5 @@ export const db = new Kysely<DB>({
   }),
 });
 
-const tableNames = { user: 'user', session: 'session' };
+const tableNames = { user: 'web_user', session: 'session' };
 export const adapter = new Mysql2Adapter(pool, tableNames);
